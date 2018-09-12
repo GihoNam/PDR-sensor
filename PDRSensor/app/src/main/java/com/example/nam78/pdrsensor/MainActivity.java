@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 
     //timestamp and dt
     private static double timestamp;
-    private static double dt;
+   // private static double dt;
 
     // for radian -> dgree
     private double RAD2DGR = 180 / Math.PI;
@@ -84,6 +84,7 @@ public class MainActivity extends Activity {
     }
 
     private class GyroscopeListener implements SensorEventListener {
+        private  double dt;
 
         @Override
         public void onSensorChanged(SensorEvent event) {
