@@ -26,9 +26,8 @@ public class MainActivity extends Activity {
     private double yaw;
 
     //timestamp and dt
-    private static double timestamp = System.currentTimeMillis();
-    private double dt = 0;
-    private double sent =0;
+    private static double timestamp;
+    private static double dt;
 
     // for radian -> dgree
     private double RAD2DGR = 180 / Math.PI;
@@ -45,6 +44,9 @@ public class MainActivity extends Activity {
         //Using the Accelometer
         mGgyroSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         mGyroLis = new GyroscopeListener();
+
+        //timestamp
+        timestamp = System.currentTimeMillis();
 
         //Touch Listener for Accelometer
         findViewById(R.id.a_start).setOnTouchListener(new View.OnTouchListener() {
@@ -94,8 +96,8 @@ public class MainActivity extends Activity {
             /* 각속도를 적분하여 회전각을 추출하기 위해 적분 간격(dt)을 구한다.
              * dt : 센서가 현재 상태를 감지하는 시간 간격
              * NS2S : nano second -> second */
-            dt = (timestamp - sent) * NS2S;
-            sent = timestamp;
+            dt = (event.timestamp - timestamp) * NS2S;
+            timestamp = event.timestamp;
 
 
 
