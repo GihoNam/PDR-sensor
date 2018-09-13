@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
     }
 
     private class GyroscopeListener implements SensorEventListener {
-        private  double dt;
+        private  static double dt;
 
         @Override
         public void onSensorChanged(SensorEvent event) {
