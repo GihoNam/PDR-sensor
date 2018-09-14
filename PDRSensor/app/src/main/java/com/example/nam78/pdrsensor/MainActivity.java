@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
             dt = (event.timestamp - timestamp) * NS2S;
             timestamp = event.timestamp;
             end = System.nanoTime();
-            add = (end - start)/100000000;
+            add = (end - start)/1000000000;
 
 
 
