@@ -27,7 +27,10 @@ public class MainActivity extends Activity {
 
     //timestamp and dt
     private static double timestamp;
-   // private static double dt;
+    private static double dt;
+    private static double start;
+    private static double add;
+    private static double end;
 
     // for radian -> dgree
     private double RAD2DGR = 180 / Math.PI;
@@ -46,7 +49,8 @@ public class MainActivity extends Activity {
         mGyroLis = new GyroscopeListener();
 
         //timestamp
-        timestamp = System.currentTimeMillis();
+        start = System.nanoTime();
+       // end = System.nanoTime();
 
         //Touch Listener for Accelometer
         findViewById(R.id.a_start).setOnTouchListener(new View.OnTouchListener() {
@@ -65,6 +69,7 @@ public class MainActivity extends Activity {
                 }
                 return false;
             }
+
         });
 
     }
@@ -84,7 +89,6 @@ public class MainActivity extends Activity {
     }
 
     private class GyroscopeListener implements SensorEventListener {
-        private  static double dt;
 
         @Override
         public void onSensorChanged(SensorEvent event) {
@@ -98,7 +102,9 @@ public class MainActivity extends Activity {
              * dt : 센서가 현재 상태를 감지하는 시간 간격
              * NS2S : nano second -> second */
             dt = (event.timestamp - timestamp) * NS2S;
-          //  timestamp = event.timestamp;
+            timestamp = event.timestamp;
+            end = System.nanoTime();
+            add = (end - start)/100000000;
 
 
 
@@ -118,7 +124,7 @@ public class MainActivity extends Activity {
                         + "           [Pitch]: " + String.format("%.1f", pitch*RAD2DGR)
                         + "           [Roll]: " + String.format("%.1f", roll*RAD2DGR)
                         + "           [Yaw]: " + String.format("%.1f", yaw*RAD2DGR)
-                        + "           [dt]: " + String.format("%.4f", dt));
+                        + "           [dt]: " + String.format("%.2f", add));
 
             }
         }
