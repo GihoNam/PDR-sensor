@@ -26,8 +26,8 @@ public class MainActivity extends Activity {
     private double yaw;
 
     //timestamp and dt
-    private static double timestamp;
-    private static double dt;
+    private double timestamp;
+    private double dt;
     private static double start;
     private static double add;
     private static double end;
@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
 
 
             /* 맨 센서 인식을 활성화 하여 처음 timestamp가 0일때는 dt값이 올바르지 않으므로 넘어간다. */
-            if (dt - event.timestamp*NS2S != 0) {
+            if (dt - timestamp*NS2S != 0) {
 
                 /* 각속도 성분을 적분 -> 회전각(pitch, roll)으로 변환.
                  * 여기까지의 pitch, roll의 단위는 '라디안'이다.
